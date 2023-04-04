@@ -7,12 +7,19 @@
 
 package main;
 
+import bank.*;
+
 public class BankFront {
 	
-	private bank.BankAccount checking;
-	private bank.BankAccount savings;
+	private BankAccount checking;
+	private BankAccount savings;
 	
 	public BankFront() {
+	}
+	
+	public BankFront(BankAccount checking, BankAccount savings) {
+		this.checking = checking;
+		this.savings = savings;
 	}
 	
 	
@@ -57,6 +64,22 @@ public class BankFront {
 			System.out.println("Balance: " + savings.getBalance());
 		}
 		System.out.print("\n");
+	}
+
+	public void transferFromCheckingToSavings(double amount) {
+		
+	}
+	
+	public void transferFromSavingsToChecking(double amount) {
+		
+	}
+	
+	public void transferToOtherAccount(String accountTypeToTakeFrom, BankFront otherAccount, String otherAccountType, double amount) {
+		
+	}
+	
+	public double interestCalculator(String accountType, int years) {
+		return 0.0;
 	}
 
 }

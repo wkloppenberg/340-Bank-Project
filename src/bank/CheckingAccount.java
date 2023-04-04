@@ -8,6 +8,8 @@
 package bank;
 
 public class CheckingAccount extends BankAccount {
+	
+	double interest = 0.02;
 
 	public CheckingAccount(String name) {
 		super(name);
