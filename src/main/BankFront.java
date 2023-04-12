@@ -7,79 +7,170 @@
 
 package main;
 
-import bank.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import bank.BankAccount;
 
 public class BankFront {
 	
-	private BankAccount checking;
-	private BankAccount savings;
+	bank.BankAccount checking;
+	bank.BankAccount savings;
 	
 	public BankFront() {
-	}
-	
-	public BankFront(BankAccount checking, BankAccount savings) {
-		this.checking = checking;
-		this.savings = savings;
 	}
 	
 	
 	public void newAccount(String type, String name) {
 		if (type.equals("C")) {
-			checking = new bank.CheckingAccount(name);
+			if (checking != null) {
+				System.err.println("Checking account already exists.");
+			}
+			else {
+				checking = new bank.CheckingAccount(name);
+			}
 		}
 		else if (type.equals("S")) {
-			savings = new bank.SavingsAccount(name);
+			if (savings != null) {
+				System.err.println("Savings account already exists.");
+			}
+			else {
+				savings = new bank.SavingsAccount(name);
+			}
+		}
+		else {
+			System.err.println("Invalid input.");
 		}
 	}
 	
 	public void deposit(String type, double amount) {
 		if (type.equals("C")) {
-			checking.deposit(amount);
+			if (checking != null) {
+				checking.deposit(amount);
+			}
+			else {
+				System.err.println("Checking account does not exist.");
+			}
 		}
 		else if (type.equals("S")) {
-			savings.deposit(amount);
+			if (savings != null) {
+				savings.deposit(amount);
+			}
+			else {
+				System.err.println("Savings account does not exist.");
+			}
+		}
+		else {
+			System.err.println("Invalid input.");
 		}
 	}
 	
 	public void withdraw(String type, double amount) {
 		if (type.equals("C")) {
-			checking.withdraw(amount);
+			if (checking != null) {
+				checking.withdraw(amount);
+			}
+			else {
+				System.err.println("Checking account does not exist.");
+			}
 		}
 		else if (type.equals("S")) {
-			savings.withdraw(amount);
+			if (savings != null) {
+				savings.withdraw(amount);
+			}
+			else {
+				System.err.println("Savings account does not exist.");
+			}
+		}
+		else {
+			System.err.println("Invalid input.");
 		}
 	}
 	
 	public void display(String type) {
 		if (type.equals("C")) {
-			System.out.print("\n");
-			System.out.println("CHECKING ACCOUNT INFORMATION");
-			System.out.println("Name: " + checking.getAccountName());
-			System.out.println("Balance: " + checking.getBalance());
+			if (checking != null) {
+				System.out.print("\n");
+				System.out.println("CHECKING ACCOUNT INFORMATION");
+				System.out.println("Name: " + checking.getAccountName());
+				System.out.println("Balance: " + checking.getBalance());
+			}
+			else {
+				System.err.println("Checking account does not exist.");
+			}
 		}
 		else if (type.equals("S")) {
-			System.out.print("\n");
-			System.out.println("SAVINGS ACCOUNT INFORMATION");
-			System.out.println("Name: " + savings.getAccountName());
-			System.out.println("Balance: " + savings.getBalance());
+			if (savings != null) {
+				System.out.print("\n");
+				System.out.println("SAVINGS ACCOUNT INFORMATION");
+				System.out.println("Name: " + savings.getAccountName());
+				System.out.println("Balance: " + savings.getBalance());
+			}
+			else {
+				System.err.println("Savings account does not exist.");
+			}
+		}
+		else {
+			System.err.println("Invalid input.");
 		}
 		System.out.print("\n");
 	}
 
+
 	public void transferFromCheckingToSavings(double amount) {
+		// TODO Auto-generated method stub
 		
 	}
-	
+
+
 	public void transferFromSavingsToChecking(double amount) {
+		// TODO Auto-generated method stub
 		
 	}
-	
-	public void transferToOtherAccount(String accountTypeToTakeFrom, BankFront otherAccount, String otherAccountType, double amount) {
+
+
+	public void transferToOtherAccount(String string, BankFront steveAccount, String string2, double amount) {
+		// TODO Auto-generated method stub
 		
 	}
+
+
+	public Double interestCalculator(String string, int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
-	public double interestCalculator(String accountType, int years) {
-		return 0.0;
+	public List<BankAccount> getAccounts(){
+		List<BankAccount> accounts = new ArrayList<>();
+		if (checking != null) {
+			accounts.add(checking);
+		}
+		if (savings != null) {
+			accounts.add(savings);
+		}
+		return accounts;
+	}
+	
+	public void changeAccountName(String type, String newName) {
+		if (type.equals("C")) {
+			if (checking != null) {
+				checking.setAccountName(newName);
+			}
+			else {
+				System.err.println("Checking account does not exist.");
+			}
+		}
+		else if (type.equals("S")) {
+			if (savings != null) {
+				savings.setAccountName(newName);
+			}
+			else {
+				System.err.println("Savings account does not exist.");
+			}
+		}
+		else {
+			System.err.println("Invalid input.");
+		}
 	}
 
 }
