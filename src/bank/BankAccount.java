@@ -30,6 +30,11 @@ public abstract class BankAccount {
 		return balance;
 	}
 	
+	public void setAccountName(String newName) {
+		this.accountName = newName;
+	    System.out.print("Account name changed to " + newName + "\n\n");
+	}
+	
 	// Method to be implemented by subclasses
 	public abstract void withdraw(double amount);
 	
